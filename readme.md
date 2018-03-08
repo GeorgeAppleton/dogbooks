@@ -3,7 +3,7 @@ cp .env.example .env
 
 configure .env variables, set up your hosts file, configure vhosts etc (below might help)
 
-<VirtualHost dogbooks.local>
+`<VirtualHost dogbooks.local>
   ServerName dogbooks.local
   ServerAlias dogbooks.local
   DocumentRoot "${INSTALL_DIR}/www/dog-books/public"
@@ -12,7 +12,7 @@ configure .env variables, set up your hosts file, configure vhosts etc (below mi
     AllowOverride All
     Require local
   </Directory>
-</VirtualHost>
+</VirtualHost>`
 
 
 composer install
