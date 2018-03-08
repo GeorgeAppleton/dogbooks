@@ -48,14 +48,14 @@ class BoardingBooking extends Model
     /**
      * Get the owner of the booking
      */
-    public function owners()
+    public function owner()
     {
         return $this->belongsTo('App\Owner');
     }
     /**
      * Get the dog of the booking
      */
-    public function dogs()
+    public function dog()
     {
         return $this->belongsTo('App\Dog');
     }

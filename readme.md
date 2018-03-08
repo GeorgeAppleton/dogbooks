@@ -20,9 +20,9 @@ If your app key didn't auto generate run `artisan key:generate`
 
     npm install
 
-    gulp build
+    npm run dev
 
-If you have any issues with version compatibility I used: `npm version 5.3.0`, `composer version 1.6.3`, `gulp cli 3.9.1`
+If you have any issues with version compatibility I used: `npm version 5.3.0`, `composer version 1.6.3`
 
 Request a DB dump from me or run `php artisan migrate` for a blank DB and configure your .env settings
 
@@ -31,9 +31,17 @@ Test your connection with custom command `php artisan connection:status`
 
 ## Future Plans
 
+* Add protected $fillable array to models
 * List of breeds, link up with sizes, which links with rates
-* Financial details for financial year
+* Limit on how many dogs you're allowed at one time (8 legally), colour code on a calendar how busy they are using this
+* Financial details for fiscal year, further pricing data, fields, manipulation etc needed
 * Training, sales, expenditures, booking financials
 * Multiple users so this can be effectively hosted and used by many (users and password reset tables currently empty)
 * Added details to booking such as discounts (% and fixed), outstanding payments, deposit paid (amount), various rates
 * No hardcoding, each user can set their own timescales, rates, dog sizes, charges etc
+
+## Current table relationships
+
+BoardingBooking >- Owner >-< Address
+BoardingBooking >- Dog >- Size
+Owner >-< Dog

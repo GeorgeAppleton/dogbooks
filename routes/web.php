@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'BoardingBookingController@index');
+
+Route::get('/booking', 'BoardingBookingController@new');
