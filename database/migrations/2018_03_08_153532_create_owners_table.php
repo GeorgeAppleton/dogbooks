@@ -20,8 +20,6 @@ class CreateOwnersTable extends Migration
             $table->string('home_number')->nullable();
             $table->string('mobile_number')->nullable();
             $table->string('email')->nullable();
-            $table->integer('address_id')->unsigned();
-            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
             $table->timestamps();
         });
     }

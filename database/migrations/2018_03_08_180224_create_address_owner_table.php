@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBoardingBookingsTable extends Migration
+class CreateAddressOwnerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateBoardingBookingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('boarding_bookings', function (Blueprint $table) {//in future we may use polymorphic relationships to point to booking for training or boarding
+        Schema::create('address_owner', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('dog_id')->unsigned();
-            $table->foreign('dog_id')->references('id')->on('dogs')->onDelete('cascade');
+            $table->integer('address_id')->unsigned();
             $table->integer('owner_id')->unsigned();
+            $table->foreign('address_id')->references('id')->on('addresses')->onDelete('cascade');
             $table->foreign('owner_id')->references('id')->on('owners')->onDelete('cascade');
-            $table->dateTime('arrival');
-            $table->dateTime('departure');
-            $table->boolean('train');
             $table->timestamps();
         });
     }
@@ -33,6 +30,6 @@ class CreateBoardingBookingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('boarding_bookings');
+        Schema::dropIfExists('address_owner');
     }
 }

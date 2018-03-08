@@ -31,6 +31,7 @@ Test your connection with custom command `php artisan connection:status`
 
 ## Future Plans
 
+* List of breeds, link up with sizes, which links with rates
 * Financial details for financial year
 * Training, sales, expenditures, booking financials
 * Multiple users so this can be effectively hosted and used by many (users and password reset tables currently empty)

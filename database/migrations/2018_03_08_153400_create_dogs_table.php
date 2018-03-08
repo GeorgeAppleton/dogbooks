@@ -16,7 +16,8 @@ class CreateDogsTable extends Migration
         Schema::create('dogs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->unsignedInteger('size_id');
+            $table->integer('size_id')->unsigned();
+            $table->foreign('size_id')->references('id')->on('dog_sizes')->onDelete('cascade');
             $table->timestamps();
         });
     }

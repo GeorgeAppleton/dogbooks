@@ -15,8 +15,6 @@ class CreateDogSizesTable extends Migration
     {
         Schema::create('dog_sizes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('dog_id')->unsigned();
-            $table->foreign('dog_id')->references('id')->on('dogs')->onDelete('cascade');
             $table->string('size');
             $table->decimal('rate_night', 5, 2);
             $table->decimal('rate_day', 5, 2);
