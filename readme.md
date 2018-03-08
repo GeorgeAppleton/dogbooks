@@ -31,6 +31,7 @@ Test your connection with custom command `php artisan connection:status`
 
 ## Future Plans
 
+* Master page
 * Add protected $fillable array to models
 * List of breeds, link up with sizes, which links with rates
 * Limit on how many dogs you're allowed at one time (8 legally), colour code on a calendar how busy they are using this

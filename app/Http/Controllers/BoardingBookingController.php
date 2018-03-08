@@ -15,8 +15,12 @@ class BoardingBookingController extends Controller
      */
     public function index(Request $request)
     {
-        $validatedData = $request->validate([
-            'from' => 'date|before:departure',
+        foreach($request->input() as $name => $value) {
+            \Session::flash($name,$value??'');//flash back submitted data so users dont lose entered info
+        }
+
+        $validator = $request->validate([
+            'from' => 'date|before_or_equal:to',
             'to' => 'date',
         ]);
 
@@ -25,8 +29,8 @@ class BoardingBookingController extends Controller
         if (!isset($request->from) || !isset($request->to)) {
                 $allTime = true; //no date range so we get most recent hundered results
         } else {
-            $from = $request->from;//daterange passed to us so get all results between that
-            $to = $request->to;
+            $from = $request->from.' 00:00:00';//daterange passed to us so get all results between that
+            $to = $request->to.' 23:59:59';
         }
 
         $bookings;

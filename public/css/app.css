@@ -8,6 +8,20 @@ body {
   margin: 0;
 }
 
+ul {
+  list-style-type: none;
+}
+
+form {
+  display: inline-block;
+  margin-bottom: 40px;
+}
+
+form > * {
+  text-align: left;
+  display: block;
+}
+
 .full-height {
   height: 100vh;
 }
@@ -54,6 +68,10 @@ body {
 
 .m-b-md {
   margin-bottom: 30px;
+}
+
+.alert-danger {
+  color: red;
 }
 
 .navbar-laravel {

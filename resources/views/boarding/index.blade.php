@@ -13,16 +13,34 @@
     <body>
         <div class="flex-center position-ref full-height">
             <div class="content">
-
+                <form>
+                    <label><b>From</b></label>
+                    <input type="date" name="from" value="{{Session::get('from')??''}}">
+                    <br/>
+                    <label><b>To</b></label>
+                    <input type="date" name="to" placeholder="Departure" value="{{Session::get('to')??''}}">
+                    <br/>
+                    <input type="submit" value="Submit">
+                </form>
+                <br/>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <table>
                     <tr>
-                        <th>Owners Name</th>
-                        <th>Dogs Name</th>
-                        <th>Here from</th>
-                        <th>Here Till</th>
+                        <th>Owner's Name</th>
+                        <th>Dog's Name</th>
+                        <th>Arrival Date</th>
+                        <th>Departure Date</th>
                         <th>No Days</th>
-                        <th>Training</th>
-                        <th>Dogs Size</th>
+                        <th>Training?</th>
+                        <th>Dog's Size</th>
                         <th>Day Rate</th>
                         <th>Night Rate</th>
                     </tr>
