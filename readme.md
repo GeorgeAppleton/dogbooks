@@ -1,4 +1,4 @@
-##Build
+## Build
 cp .env.example .env
 
 configure .env variables, set up your hosts file, configure vhosts etc (below might help)
