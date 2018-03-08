@@ -21,5 +21,4 @@ npm install
 
 gulp build
 
-If you have any issues with version compatability:
-I used npm version 5.3.0, composer version 1.6.3, gulp cli 3.9.1
+If you have any issues with version compatibility I used: `npm version 5.3.0`, `composer version 1.6.3`, `gulp cli 3.9.1`
