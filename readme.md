@@ -25,3 +25,5 @@ gulp build
 If you have any issues with version compatibility I used: `npm version 5.3.0`, `composer version 1.6.3`, `gulp cli 3.9.1`
 
 Request a DB dump from me and configure it
+
+Test your connection with custom command `php artisan connection:status`
