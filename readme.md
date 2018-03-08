@@ -1,5 +1,5 @@
 ## Build
-cp .env.example .env
+    cp .env.example .env
 
 configure .env variables, set up your hosts file, configure vhosts etc (below might help)
 
@@ -16,11 +16,11 @@ configure .env variables, set up your hosts file, configure vhosts etc (below mi
 
 If your app key didn't auto generate run `artisan key:generate`
 
-composer install
+    composer install
 
-npm install
+    npm install
 
-gulp build
+    gulp build
 
 If you have any issues with version compatibility I used: `npm version 5.3.0`, `composer version 1.6.3`, `gulp cli 3.9.1`
 
