@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', 'BoardingBookingController@index');
+Route::get('/', 'BoardingBookingController@index')->name('home');
 
-Route::get('/booking', 'BoardingBookingController@new');
+Route::get('/booking', 'BoardingBookingController@new')->name('booking');
