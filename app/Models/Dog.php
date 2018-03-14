@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,6 +19,20 @@ class Dog extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['name','size_id','breed'];
+
+    /**
+     * The possible relationships.
+     *
+     * @var array
+     */
+    protected $possibleRelations = ['size','boardingBookings','owners'];
 
     /**
      * Create a new instance.
@@ -48,7 +62,7 @@ class Dog extends Model
      */
     public function size()
     {
-        return $this->belongsTo('App\DogSize');
+        return $this->belongsTo('App\Models\DogSize');
     }
 
     /**
@@ -56,7 +70,7 @@ class Dog extends Model
      */
     public function boardingBookings()
     {
-        return $this->hasMany('App\BoardingBooking');
+        return $this->hasMany('App\Models\BoardingBooking');
     }
 
     /**
@@ -64,6 +78,23 @@ class Dog extends Model
      */
     public function owners()
     {
-        return $this->belongsToMany('App\Owner');
+        return $this->belongsToMany('App\Models\Owner');
     }
+
+    /**
+     * Get protected value fillable
+     */
+    public function getFillable()
+    {
+        return $this->fillable;
+    }
+
+    /**
+     * Get protected value $possibleRelations
+     */
+    public function getPossibleRelations()
+    {
+        return $this->possibleRelations;
+    }
+
 }

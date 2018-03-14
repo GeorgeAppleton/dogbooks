@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,6 +19,20 @@ class Address extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['address'];
+
+    /**
+     * The possible relationships.
+     *
+     * @var array
+     */
+    protected $possibleRelations = ['owners'];
 
     /**
      * Create a new instance.
@@ -41,6 +55,23 @@ class Address extends Model
      */
      public function owners()
      {
-         return $this->belongsToMany('App\Owner', 'address_owner', 'address_id', 'owner_id');
+         return $this->belongsToMany('App\Models\Owner', 'address_owner', 'address_id', 'owner_id');
      }
+
+     /**
+      * Get protected value fillable
+      */
+     public function getFillable()
+     {
+         return $this->fillable;
+     }
+
+     /**
+      * Get protected value $possibleRelations
+      */
+     public function getPossibleRelations()
+     {
+         return $this->possibleRelations;
+     }
+
 }

@@ -13,7 +13,7 @@
     <body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">Dog Books</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -22,8 +22,17 @@
                         <li class="nav-item {{\Request::route()->getName()=='home' ? 'active' : ''}}">
                             <a class="nav-link" href="{{ route('home') }}">Home</a>
                         </li>
-                        <li class="nav-item {{\Request::route()->getName()=='booking' ? 'active' : ''}}">
-                            <a class="nav-link" href="{{ route('booking') }}">New Bookings</a>
+                        <li class="nav-item dropdown {{\Request::route()->getName()=='profile' ? 'active' : ''}}">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Profiles
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{{ route('profile',['model' => 'dog', 'id' => 1]) }}">Dogs</a>
+                                <a class="dropdown-item" href="{{ route('profile',['model' => 'owner', 'id' => 1]) }}">Owners</a>
+                                <a class="dropdown-item" href="{{ route('profile',['model' => 'boardingbooking', 'id' => 1]) }}">Boarding Bookings</a>
+                                <a class="dropdown-item" href="{{ route('profile',['model' => 'address', 'id' => 1]) }}">Addresses</a>
+                                <a class="dropdown-item" href="{{ route('profile',['model' => 'dogsize', 'id' => 1]) }}">Dog Sizes</a>
+                            </div>
                         </li>
                     </ul>
                 </div>

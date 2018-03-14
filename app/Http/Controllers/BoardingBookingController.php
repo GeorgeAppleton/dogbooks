@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App;
-use App\BoardingBooking;
+use App\Models\BoardingBooking;
 use Illuminate\Http\Request;
 
 class BoardingBookingController extends Controller
@@ -35,9 +35,9 @@ class BoardingBookingController extends Controller
 
         $bookings;
         if ($allTime) {
-            $bookings = App\BoardingBooking::orderBy('departure', 'desc')->limit(100);
+            $bookings = App\Models\BoardingBooking::orderBy('departure', 'desc')->limit(100);
         } else {
-            $bookings = App\BoardingBooking::whereBetween('arrival',[$from,$to])->orWhereBetween('departure', [$from, $to])->orderBy('departure', 'desc');
+            $bookings = App\Models\BoardingBooking::whereBetween('arrival',[$from,$to])->orWhereBetween('departure', [$from, $to])->orderBy('departure', 'desc');
         }
 
         $bookings = $bookings->with([//fetch the data needed from related tables, eager load

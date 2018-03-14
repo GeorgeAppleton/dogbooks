@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,6 +19,20 @@ class Owner extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['first_name','last_name','home_number','mobile_number','email'];
+
+    /**
+     * The possible relationships.
+     *
+     * @var array
+     */
+    protected $possibleRelations = ['address','dogs','boardingBookings'];
 
     public function store(Request $request)
     {
@@ -46,7 +60,7 @@ class Owner extends Model
      */
     public function address()
     {
-        return $this->belongsToMany('App\Address', 'address_owner', 'owner_id', 'address_id');
+        return $this->belongsToMany('App\Models\Address', 'address_owner', 'owner_id', 'address_id');
     }
 
     /**
@@ -54,7 +68,7 @@ class Owner extends Model
      */
     public function dogs()
     {
-        return $this->belongsToMany('App\Dog');
+        return $this->belongsToMany('App\Models\Dog');
     }
 
     /**
@@ -62,6 +76,23 @@ class Owner extends Model
      */
     public function boardingBookings()
     {
-        return $this->hasMany('App\BoardingBooking');
+        return $this->hasMany('App\Models\BoardingBooking');
     }
+
+    /**
+     * Get protected value fillable
+     */
+    public function getFillable()
+    {
+        return $this->fillable;
+    }
+
+    /**
+     * Get protected value $possibleRelations
+     */
+    public function getPossibleRelations()
+    {
+        return $this->possibleRelations;
+    }
+
 }

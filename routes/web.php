@@ -13,4 +13,4 @@
 
 Route::get('/', 'BoardingBookingController@index')->name('home');
 
-Route::get('/booking', 'BoardingBookingController@new')->name('booking');
+Route::get('/profile/{model}/{id}', 'ProfileController@index')->name('profile');
