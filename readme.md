@@ -31,15 +31,15 @@ Test your connection with custom command `php artisan connection:status`
 
 ## Future Plans
 
-* Master page
-* Add protected $fillable array to models
-* List of breeds, link up with sizes, which links with rates
-* Limit on how many dogs you're allowed at one time (8 legally), colour code on a calendar how busy they are using this
+* Build front end profiles and tools to link to any profile by model name and id
+* Add vacination data for dogs
+* List of breeds, link up with sizes, *other* size table for unknown breeds, breed -> size -> rates
+* Limit on how many dogs you're allowed at one time (8 legally), colour code on a calendar how busy they are using this on front page calendar
 * Financial details for fiscal year, further pricing data, fields, manipulation etc needed
 * Training, sales, expenditures, booking financials
 * Multiple users so this can be effectively hosted and used by many (users and password reset tables currently empty)
 * Added details to booking such as discounts (% and fixed), outstanding payments, deposit paid (amount), various rates
-* No hardcoding, each user can set their own timescales, rates, dog sizes, charges etc
+* No hardcoding, each user can set their own timescales, rates, dog sizes, charges, dog count limit etc
 
 ## Current table relationships
 
