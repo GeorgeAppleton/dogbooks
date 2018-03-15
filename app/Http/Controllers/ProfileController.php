@@ -48,6 +48,7 @@ class ProfileController extends Controller
                 }
                 array_push($currentRelClasses, get_class($futureItemCollection));//we need to check for the future relationship before the recursive call
                 if (max(array_count_values($currentRelClasses)) > 1) {//if we've hit the same relation more than once then skip current iteration
+                    array_pop($currentRelClasses); //remove one from the stack
                     continue;
                 }
 
@@ -57,6 +58,7 @@ class ProfileController extends Controller
                 // }]);
                 $item = $item->with($newRel);//selecting only fillable fields wasn't working, likely due to unexpected fields being required
                 $item = deepProcess($item, $depth->first()->$rel,$newRel,$currentRelClasses);
+                array_pop($currentRelClasses); //remove one from the stack
             }
             return $item;
         }
