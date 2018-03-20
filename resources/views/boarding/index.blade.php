@@ -3,16 +3,12 @@
 @section('content')
 <div class="flex-center position-ref full-height">
     <div class="content">
-        <div>
-        @include('boarding.new')
-        </div>
-        <hr/>
         <form>
             <label><b>From</b></label>
             <input type="date" name="from" value="{{Session::get('from')??''}}">
             <br/>
             <label><b>To</b></label>
-            <input type="date" name="to" placeholder="Departure" value="{{Session::get('to')??''}}">
+            <input type="date" name="to" value="{{Session::get('to')??''}}">
             <br/>
             <input type="submit" value="Submit">
         </form>
@@ -40,8 +36,8 @@
             </tr>
             @foreach($bookings as $booking)
             <tr>
-                <td>{{$booking["owner"]["first_name"].' '.$booking["owner"]["last_name"]}}</td>
-                <td>{{$booking["dog"]["name"]}}</td>
+                <td><a href="{{ route('profile',['model' => 'owner', 'id' => $booking["owner"]["id"]]) }}">{{$booking["owner"]["first_name"].' '.$booking["owner"]["last_name"]}}</a></td>
+                <td><a href="{{ route('profile',['model' => 'dog', 'id' => $booking["dog"]["id"]]) }}">{{$booking["dog"]["name"]}}</a></td>
                 <td>{{$booking["arrival"]}}</td>
                 <td>{{$booking["departure"]}}</td>
                 <td>{{strToDatetime($booking["arrival"])->diff(strToDatetime($booking["departure"]))->days}}</td>

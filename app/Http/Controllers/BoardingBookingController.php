@@ -59,6 +59,15 @@ class BoardingBookingController extends Controller
         return view('boarding.index',$dataArray);
     }
 
+    public function new()
+    {
+
+        $dataArray = [
+
+        ];
+        return view('boarding.new',$dataArray);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
