@@ -4,6 +4,7 @@
 <div class="flex-center position-ref full-height">
     <div class="content">
         <form>
+            @csrf
             <label><b>From</b></label>
             <input type="date" name="from" value="{{Session::get('from')??''}}">
             <br/>
@@ -24,15 +25,15 @@
         @endif
         <table class="table">
             <tr>
-                <th>Owner's Name</th>
-                <th>Dog's Name</th>
-                <th>Arrival Date</th>
-                <th>Departure Date</th>
-                <th>No Days</th>
-                <th>Training?</th>
-                <th>Dog's Size</th>
-                <th>Day Rate</th>
-                <th>Night Rate</th>
+                <th class="alphOrder"><div>Owner's Name</div></th>
+                <th><div>Dog's Name</div></th>
+                <th class="alphOrder"><div>Arrival Date</div></th>
+                <th><div>Departure Date</div></th>
+                <th><div>No Days</div></th>
+                <th><div>Training?</div></th>
+                <th><div>Dog's Size</div></th>
+                <th><div>Day Rate</div></th>
+                <th><div>Night Rate</div></th>
             </tr>
             @foreach($bookings as $booking)
             <tr>

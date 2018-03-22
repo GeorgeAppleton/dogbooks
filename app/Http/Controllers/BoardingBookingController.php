@@ -35,9 +35,9 @@ class BoardingBookingController extends Controller
 
         $bookings;
         if ($allTime) {
-            $bookings = App\Models\BoardingBooking::orderBy('departure', 'desc')->limit(100);
+            $bookings = App\Models\BoardingBooking::orderBy('arrival', 'desc')->limit(100);
         } else {
-            $bookings = App\Models\BoardingBooking::whereBetween('arrival',[$from,$to])->orWhereBetween('departure', [$from, $to])->orderBy('departure', 'desc');
+            $bookings = App\Models\BoardingBooking::whereBetween('arrival',[$from,$to])->orWhereBetween('departure', [$from, $to])->orderBy('arrival', 'desc');
         }
 
         $bookings = $bookings->with([//fetch the data needed from related tables, eager load
@@ -57,15 +57,6 @@ class BoardingBookingController extends Controller
         ];
 
         return view('boarding.index',$dataArray);
-    }
-
-    public function new()
-    {
-
-        $dataArray = [
-
-        ];
-        return view('boarding.new',$dataArray);
     }
 
     /**

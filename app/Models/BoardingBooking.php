@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Dog;
+use App\Models\Owner;
 
 class BoardingBooking extends Model
 {
@@ -40,23 +42,52 @@ class BoardingBooking extends Model
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store($request)
     {
+        $request->arrival = $request->arrival.' '.$request->arrivalTime;
+        $request->departure = $request->departure.' '.$request->departureTime;
+
         $validatedData = $request->validate([
-            'dog_id' => 'required|integer',
-            'arrival' => 'required|date|before:departure',
+            'dog_id' => 'required|integer|min:1',
+            'owner_id' => 'required|integer|min:1',
+            'arrival' => 'required|date|before_or_equal:departure',
             'departure' => 'required|date',
-            'train' => 'required|boolean'
+            'train' => 'integer|min:0|max:1'
         ]);
 
+        //set arrival departure datetimes here
+
+        $dateRangeTester = new BoardingBooking;
+
+        if ($dateRangeTester->where('dog_id',$request->dog_id)->where('departure','>=',$request->arrival)->where('arrival','<=',$request->departure)->count()>0) {//dates intersect for same dog
+            \Session::flash('customError','These dates intersect with a booking for the same dog');
+            return false;
+        }
+        // dd('wot');
         $boardingObj = new BoardingBooking;
 
         $boardingObj->dog_id = $request->dog_id;
+        $dogObj = new Dog;
+        $dogObj = $dogObj->where('id',$request->dog_id);
+        $boardingObj->owner_id = $request->owner_id;
+        $ownerObj = new Owner;
+        $ownerObj = $ownerObj->where('id',$request->owner_id);
+
+        if ($dogObj->count()!==1||$ownerObj->count()!==1) {//make sure the dog and owner were found
+            \Session::flash('customError','Dog or Owner not found');
+            return false;
+        } else {
+            $dogObj = $dogObj->first();//set up triangular relation, opposite side between dogs and owners
+            $dogObj->owners()->sync($request->owner_id,false);//hard set those as only id's with duplicates removed
+        }
+
         $boardingObj->arrival = $request->arrival;
         $boardingObj->departure = $request->departure;
-        $boardingObj->train = $request->train;
+        $boardingObj->train = $request->train?1:0;
 
         $boardingObj->save();
+
+        return true;
     }
 
     /**

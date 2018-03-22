@@ -42,7 +42,7 @@ class ProfileController extends Controller
                     $newRel = $currentRel.'.'.$rel;// $newRel example, dog.owner.addresses
                 }
 
-                $futureItemCollection = $depth->first()->$rel->first();
+                $futureItemCollection = $depth->first()->$rel->first();//this is inherently flawed, if this system expands this needs to be reworked, currently only checks if first result exists
                 if (!$futureItemCollection) {
                     continue; // no relationship found from $depth through $rel
                 }

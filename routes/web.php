@@ -13,7 +13,6 @@
 
 Route::get('/', 'BoardingBookingController@index')->name('home');
 
-Route::get('/new', 'NewDataController@index')->name('newData');
-Route::post('/new/boarding','BoardingBookingController@new')->name('newBoardingBooking');
+Route::match(['get', 'post'], '/new', 'NewDataController@index')->name('newData');
 
 Route::get('/profile/{model}/{id}', 'ProfileController@index')->name('profile');
