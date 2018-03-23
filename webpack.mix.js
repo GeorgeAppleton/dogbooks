@@ -15,4 +15,7 @@ mix.js([
     'resources/assets/js/app.js',
     'resources/assets/js/components/tableSorter.js',
     ], 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+   .sass('resources/assets/sass/app.scss', 'public/css')
+   .version().copy('resources/assets/fonts', 'public/fonts')
+   .options({ processCssUrls: false })
+   ;

@@ -48,16 +48,19 @@ let applyOrder = (elem) => {
 };
 
 let orderPrep = (orderQuery,elem) => {
-    console.log(elem);
     let columnNo = $(elem).index();//zero-based position column number
     let table = $(elem).closest('table'); //table element
 
-    let stylings = {'neutral' : 'x', 'desc' : '\\/', 'asc' : '^'};
+    let stylings = {
+        'neutral' : '<i class="icon icon-circle"></i>',
+        'desc' : '<i class="icon icon-chevron-circle-down"></i>',
+        'asc' : '<i class="icon icon-chevron-circle-up"></i>'
+    };
 
     //apply neutral styling and trigger for changes
     let direction = 'neutral';
     let stylingClass = 'directionStylings';
-    $(elem).append("<i class='"+stylingClass+"'>"+stylings[direction]+"</i>");
+    $(elem).append("<div class='"+stylingClass+"'>"+stylings[direction]+"</div>");
     let stylingSpan = $(elem).find('.'+stylingClass);
     $(elem).on('click',(event) => {//on click flip direction
         if (direction !== 'desc') {
@@ -65,8 +68,8 @@ let orderPrep = (orderQuery,elem) => {
         } else {
             direction = 'asc';
         }
-        $('.stylingClass').not($(stylingSpan)).text(stylings['neutral']);//other directions styling set to neutral
-        $(stylingSpan).text(stylings[direction]);//current direction styling set
+        $('.'+stylingClass).not($(stylingSpan)).html(stylings['neutral']);//other directions styling set to neutral
+        $(stylingSpan).html(stylings[direction]);//current direction styling set
 
         orderQuery(direction, columnNo, table);
     });

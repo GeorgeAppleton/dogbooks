@@ -26,14 +26,14 @@
         <table class="table">
             <tr>
                 <th class="alphOrder"><div>Owner's Name</div></th>
-                <th><div>Dog's Name</div></th>
+                <th class="alphOrder"><div>Dog's Name</div></th>
                 <th class="alphOrder"><div>Arrival Date</div></th>
-                <th><div>Departure Date</div></th>
-                <th><div>No Days</div></th>
-                <th><div>Training?</div></th>
-                <th><div>Dog's Size</div></th>
-                <th><div>Day Rate</div></th>
-                <th><div>Night Rate</div></th>
+                <th class="alphOrder"><div>Departure Date</div></th>
+                <th class="alphOrder"><div>No Days</div></th>
+                <th class="alphOrder"><div>Training?</div></th>
+                <th class="alphOrder"><div>Dog's Size</div></th>
+                <th class="alphOrder"><div>Day Rate</div></th>
+                <th class="alphOrder"><div>Night Rate</div></th>
             </tr>
             @foreach($bookings as $booking)
             <tr>
