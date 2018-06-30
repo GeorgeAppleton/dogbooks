@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use App\Models\Dog;
 use App\Models\Owner;
 
@@ -90,6 +91,8 @@ class BoardingBooking extends Model
         return true;
     }
 
+
+
     /**
      * Get the owner of the booking
      */
@@ -119,6 +122,61 @@ class BoardingBooking extends Model
     public function getPossibleRelations()
     {
         return $this->possibleRelations;
+    }
+
+    /**
+     * Get protected value $fields
+     */
+    public function getFields()
+    {
+        $dogObj = new Dog;
+        $dogObj = $dogObj->select('id','name')->get()->toArray();
+        $dogObj = array_map(function($row){
+            return [
+                'value' => $row['id'],
+                'text' => $row['name']
+            ];
+        }, $dogObj);
+
+
+        $ownerObj = new Owner;
+        $ownerObj = $ownerObj->select('id','first_name','last_name')->get()->toArray();
+        $ownerObj = array_map(function($row) {
+            return [
+                'value' => $row['id'],
+                'text' => $row['first_name'].' '.$row['last_name']
+            ];
+        }, $ownerObj);
+
+        return [
+            [
+                'type' => 'dropdown-single',
+                'label' => 'Dog',
+                'name' => 'dog_id',
+                'options' => $dogObj,
+            ],
+            [
+                'type' => 'dropdown-single',
+                'label' => 'Owner',
+                'name' => 'owner_id',
+                'options' => $ownerObj,
+            ],
+            [
+                'type' => 'datetime',
+                'label' => 'Arrival',
+                'name' => 'arrivalDate'
+            ],
+            [
+                'type' => 'datetime',
+                'label' => 'Departure',
+                'name' => 'departureDate'
+            ],
+            [
+                'type' => 'checkbox',
+                'label' => 'Training?',
+                'name' => 'train'
+            ],
+        ];
     }
 
 }

@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+require('./components/select2-init')
 
 // window.Vue = require('vue');
 

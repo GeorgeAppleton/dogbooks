@@ -32,7 +32,7 @@ class Owner extends Model
      *
      * @var array
      */
-    protected $possibleRelations = ['address','dogs','boardingBookings'];
+    protected $possibleRelations = ['address','boardingBookings'];
 
     public function store(Request $request)
     {
@@ -64,12 +64,12 @@ class Owner extends Model
     }
 
     /**
-     * Get the dogs of the owner
+     * Get the dogs of the owner (change to through boarding not direct relation)
      */
-    public function dogs()
-    {
-        return $this->belongsToMany('App\Models\Dog');
-    }
+    // public function dogs()
+    // {
+    //     return $this->belongsToMany('App\Models\Dog');
+    // }
 
     /**
      * Get the bookings for the owner

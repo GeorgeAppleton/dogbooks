@@ -32,7 +32,7 @@ class Dog extends Model
      *
      * @var array
      */
-    protected $possibleRelations = ['size','boardingBookings','owners'];
+    protected $possibleRelations = ['size','boardingBookings'];
 
     /**
      * Create a new instance.
@@ -74,12 +74,12 @@ class Dog extends Model
     }
 
     /**
-     * Get the dogs of the owner
+     * Get the dogs of the owner (change to through boarding not direct relation)
      */
-    public function owners()
-    {
-        return $this->belongsToMany('App\Models\Owner');
-    }
+    // public function owners()
+    // {
+    //     return $this->belongsToMany('App\Models\Owner');
+    // }
 
     /**
      * Get protected value fillable

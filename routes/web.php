@@ -14,5 +14,6 @@
 Route::get('/', 'BoardingBookingController@index')->name('home');
 
 Route::match(['get', 'post'], '/new', 'NewDataController@index')->name('newData');
+Route::match(['get', 'post'], '/newer', 'NewDataController@index2')->name('newData2');
 
 Route::get('/profile/{model}/{id}', 'ProfileController@index')->name('profile');

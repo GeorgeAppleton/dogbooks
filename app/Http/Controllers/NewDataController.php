@@ -43,4 +43,33 @@ class NewDataController extends Controller
         ];
         return view('new-data.index',$arrayToFront);
     }
+
+    public function index2(Request $request)
+    {
+        if (null!==$request->get('model')) {
+            foreach($request->input() as $name => $value) {
+                \Session::flash($name,$value??'');//flash back submitted data so users dont lose entered info
+            }
+
+            $model = $this->models[$request->get('model')];
+            $result = $model->store($request);
+            if ($result) {
+                \Session::flash('success','Successfully Submitted');
+            }
+        }
+
+        $models = ['New Booking' => 'boardingbooking'];
+        $forms = [];
+        foreach($models as $title => $modelName) {
+            $fields = $this->models[$modelName];
+            $fields = $fields->getFields();
+            array_push($forms,[
+                'formName' => $title,
+                'model' => $modelName,
+                'components' => $fields
+            ]);
+        }
+
+        return view('masters.form-master', ['forms' => $forms]);
+    }
 }
