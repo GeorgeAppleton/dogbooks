@@ -1,3 +1,7 @@
+# Archived project
+
+I made this so that I could mess around with fancy/terrible table relationship code so I had something to talk about in a particular interview (got the job by the way). The end result idea was for it to be a booking/management/finance system for dogboarders (people who look after dogs at home for a living). I have no interest in continuing this so it's been archived as a result.
+
 ## Build
     cp .env.example .env
 
